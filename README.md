@@ -12,7 +12,7 @@ It is designed to automate http://www.saucedemo.com
 
 ## Getting Started
 
-Download a copy of this repository to your computer by clicking the green `Code` button on Github, and the click `Download Zip`.
+Download a copy of this repository to your computer by clicking the green `Code` button on Github, and the clicking `Download Zip`.
 
 From there, import it as a Maven project within your IDE of choice, e.g. IntelliJ Idea, or Eclipse.
 
