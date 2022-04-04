@@ -1,6 +1,7 @@
 package com.thefloow.java_selenium_example.common;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Represents the concept of a webpage that we want to interact with, specifically one within saucedemo.com

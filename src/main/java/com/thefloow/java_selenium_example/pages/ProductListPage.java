@@ -45,7 +45,7 @@ public class ProductListPage extends BasePage implements HasCart {
      */
     public boolean productHasRemoveButton(String productName) {
         WebElement product = getProductCardByName(productName);
-        WebElement removeProductButton = product.findElement(By.xpath(".//*[text()='Remove']"));
+        WebElement removeProductButton = product.findElement(By.xpath("//*[text()='Remove']"));
         return removeProductButton.isDisplayed();
     }
 
@@ -53,7 +53,7 @@ public class ProductListPage extends BasePage implements HasCart {
     /**
      * Check whether an 'Add to cart' button is displayed for a named product. Likely to throw an exception if one is
      * not present. Use productHasRemoveButton to check the opposite.
-     *
+     *.
      * @param productName The name of the product to check whether an add button is present for
      * @return true is add to cart button is displayed
      */
