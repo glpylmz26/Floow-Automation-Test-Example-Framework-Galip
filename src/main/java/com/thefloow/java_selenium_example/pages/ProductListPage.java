@@ -1,7 +1,6 @@
 package com.thefloow.java_selenium_example.pages;
 
 import com.thefloow.java_selenium_example.common.BasePage;
-import com.thefloow.java_selenium_example.common.HasCart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,7 @@ import org.openqa.selenium.WebElement;
 /**
  * All methods related to interacting with the product list page go here (/inventory.html)
  */
-public class ProductListPage extends BasePage implements HasCart {
+public class ProductListPage extends BasePage {
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -53,7 +52,8 @@ public class ProductListPage extends BasePage implements HasCart {
     /**
      * Check whether an 'Add to cart' button is displayed for a named product. Likely to throw an exception if one is
      * not present. Use productHasRemoveButton to check the opposite.
-     *.
+     * .
+     *
      * @param productName The name of the product to check whether an add button is present for
      * @return true is add to cart button is displayed
      */

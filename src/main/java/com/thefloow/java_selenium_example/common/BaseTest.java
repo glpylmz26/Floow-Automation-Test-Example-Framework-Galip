@@ -3,6 +3,7 @@ package com.thefloow.java_selenium_example.common;
 import com.thefloow.java_selenium_example.pages.CartPage;
 import com.thefloow.java_selenium_example.pages.LoginPage;
 import com.thefloow.java_selenium_example.pages.ProductListPage;
+import com.thefloow.java_selenium_example.pages.ProductViewPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -20,6 +21,7 @@ public abstract class BaseTest {
     protected LoginPage loginPage;
     protected ProductListPage productListPage;
     protected CartPage cartPage;
+    protected ProductViewPage productViewPage;
 
     // Define test lifecycle stages
     @BeforeAll
@@ -29,7 +31,7 @@ public abstract class BaseTest {
     }
 
     @BeforeEach
-    public void baseBeforeEach() throws InterruptedException {
+    public void baseBeforeEach(){
         // Start the browser
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);

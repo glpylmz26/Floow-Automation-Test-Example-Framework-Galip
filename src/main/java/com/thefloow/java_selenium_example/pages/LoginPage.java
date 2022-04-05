@@ -1,7 +1,6 @@
 package com.thefloow.java_selenium_example.pages;
 
 import com.thefloow.java_selenium_example.common.BasePage;
-import com.thefloow.java_selenium_example.common.HasCart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,7 @@ import org.openqa.selenium.WebElement;
 /**
  * All methods related to interacting with the Login page go here
  */
-public class LoginPage extends BasePage implements HasCart {
+public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }

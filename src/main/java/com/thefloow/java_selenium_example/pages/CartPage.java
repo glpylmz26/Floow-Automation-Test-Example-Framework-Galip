@@ -1,20 +1,16 @@
 package com.thefloow.java_selenium_example.pages;
 
 import com.thefloow.java_selenium_example.common.BasePage;
-import com.thefloow.java_selenium_example.common.HasCart;
-import com.thefloow.java_selenium_example.common.UnimplementedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Represents the cart page (/cart.html)
  */
-public class CartPage extends BasePage implements HasCart {
+public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
     }
@@ -29,11 +25,11 @@ public class CartPage extends BasePage implements HasCart {
 
     public boolean isItemInCart(String productName) {
         WebElement product = driver.findElement(By.xpath("//div[.='" + productName + "']"));
-        return  product.isDisplayed();
+        return product.isDisplayed();
     }
 
     public void removeItemFromCart(String productName) {
-        WebElement productRemoveButton = driver.findElement(By.xpath("//div[.='" +productName+ "']/../..//button"));
+        WebElement productRemoveButton = driver.findElement(By.xpath("//div[.='" + productName + "']/../..//button"));
         productRemoveButton.click();
     }
 
