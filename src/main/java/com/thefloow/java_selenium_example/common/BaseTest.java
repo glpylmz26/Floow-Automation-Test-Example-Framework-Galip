@@ -40,6 +40,7 @@ public abstract class BaseTest {
         loginPage = new LoginPage(driver);
         productListPage = new ProductListPage(driver);
         cartPage = new CartPage(driver);
+        productViewPage = new ProductViewPage(driver);
 
         // Set up for the next test case...
         loginPage.get();

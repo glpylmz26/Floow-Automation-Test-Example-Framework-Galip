@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -17,18 +16,33 @@ public class ProductViewPageTest extends BaseTest implements HasCart {
     }
 
     @Test
-    @DisplayName("User can add the product to cart from view page")
-    public void userCanAddProductsToCart() {
+    @DisplayName("User can add the product to cart from PDP")
+    // PDP is Product Detail Page
+    public void userCanAddProductsToCartFromPDP() {
         String product = "Sauce Labs Backpack";
         productViewPage.clickOnTheProductForDetail(product);
         assertTrue(productViewPage.isProductDetailDisplayed(product));
         assertTrue(productViewPage.productHasAddButton(product));
         productViewPage.addProductToCart(product);
-        assertEquals(1, getNumberOfItemsInCart(driver));
+        assertTrue(getNumberOfItemsInCart(driver) > 0);
         assertTrue(productViewPage.productHasRemoveButton(product));
         productViewPage.removeProductFromCart(product);
         assertTrue(productViewPage.productHasAddButton(product));
+    }
 
+    @Test
+    @DisplayName("User can go back PLP and can go to Cart from PDP")
+    // PDP is Product Detail Page
+    //PLP is Product List Page
+    public void userCanGoBackToListOrCanGoToCartFromPDP(){
+        String product = "Sauce Labs Backpack";
+        productViewPage.clickOnTheProductForDetail(product);
+        assertTrue(productViewPage.isProductDetailDisplayed(product));
+        productViewPage.clickOnTheBackToProductsButton();
+        assertTrue(productListPage.hasLoaded());
+        productViewPage.clickOnTheProductForDetail(product);
+        openCart(driver);
+        assertCartIsOpened(driver);
 
     }
 }

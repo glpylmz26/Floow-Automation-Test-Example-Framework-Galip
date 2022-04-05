@@ -13,6 +13,10 @@ public interface HasCart {
     }
 
     default void openCart(WebDriver driver) {
-        driver.findElement(By.className("shopping_cart_badge")).click();
+        driver.findElement(By.xpath("//div[starts-with(@class,'shopping_cart_')]")).click();
+    }
+
+    default boolean assertCartIsOpened(WebDriver driver){
+        return driver.findElement(By.xpath("//span[.='Your Cart']")).isDisplayed();
     }
 }
