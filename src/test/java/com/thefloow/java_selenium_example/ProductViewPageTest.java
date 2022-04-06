@@ -33,7 +33,7 @@ public class ProductViewPageTest extends BaseTest implements HasCart {
     @Test
     @DisplayName("User can go back PLP and can go to Cart from PDP")
     // PDP is Product Detail Page
-    //PLP is Product List Page
+    // PLP is Product List Page
     public void userCanGoBackToListOrCanGoToCartFromPDP(){
         String product = "Sauce Labs Backpack";
         productViewPage.clickOnTheProductForDetail(product);

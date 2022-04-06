@@ -25,10 +25,14 @@ public class CartPageTest extends BaseTest implements HasCart {
         assertEquals(2,cartPage.getNumberOfItemsInCartList());
         cartPage.removeItemFromCart(product1);
         assertEquals(1,cartPage.getNumberOfItemsInCartList());
-        cartPage.clickContinueShopping();
-        productListPage.addProductToCart(product1);
+    }
+
+    @Test
+    @DisplayName("User can go back to PLP/go to checkout from Cart")
+    public void userCanGoBackPLPAndCheckoutFromCart(){
         openCart(driver);
-        assertEquals(2,cartPage.getNumberOfItemsInCartList());
+        cartPage.clickContinueShopping();
+        openCart(driver);
         cartPage.clickCheckout();
     }
 
