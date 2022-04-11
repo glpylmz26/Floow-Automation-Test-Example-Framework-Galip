@@ -44,6 +44,7 @@ public class LoginPage extends BasePage {
      */
     public boolean isErrorDisplayed(String expectedError) {
         WebElement errorContainer = driver.findElement(By.className("error-message-container"));
+        System.out.println(errorContainer.getText());
         return errorContainer.getText().equals(expectedError);
     }
 }

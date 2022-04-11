@@ -16,7 +16,7 @@ public interface HasCart {
         driver.findElement(By.id("shopping_cart_container")).click();
     }
 
-    default boolean assertCartIsOpened(WebDriver driver){
+    default boolean cartIsOpened(WebDriver driver){
         return driver.findElement(By.xpath("//span[.='Your Cart']")).isDisplayed();
     }
 }

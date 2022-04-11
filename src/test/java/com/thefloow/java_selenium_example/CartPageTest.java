@@ -8,33 +8,83 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CartPageTest extends BaseTest implements HasCart {
-    @BeforeEach()
-    public void productsBeforeEach() {
-        loginPage.logIn("standard_user", "secret_sauce");
-    }
 
     @Test
-    @DisplayName("User can edit Cart")
-    public void userCanEditCart(){
+    @DisplayName("User can edit Cart Negative Scenario- standard_user")
+    public void userCanEditCartNegative(){
+        loginPage.logIn("standard_user", "secret_sauce");
         String product1 = "Sauce Labs Backpack";
         String product2 = "Sauce Labs Bike Light";
         productListPage.addProductToCart(product1);
         productListPage.addProductToCart(product2);
         openCart(driver);
         assertTrue(cartPage.isItemInCart(product1) && cartPage.isItemInCart(product2));
-        assertEquals(2,cartPage.getNumberOfItemsInCartList());
+        assertEquals(2,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
         cartPage.removeItemFromCart(product1);
-        assertEquals(1,cartPage.getNumberOfItemsInCartList());
-    }
-
-    @Test
-    @DisplayName("User can go back to PLP/go to checkout from Cart")
-    public void userCanGoBackPLPAndCheckoutFromCart(){
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
         openCart(driver);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
         cartPage.clickContinueShopping();
         openCart(driver);
         cartPage.clickCheckout();
     }
 
+    @Test
+    @DisplayName("User can edit Cart Positive Scenario- standard_user")
+    public void userCanEditCartPositive(){
+        loginPage.logIn("standard_user", "secret_sauce");
+        String product1 = "Sauce Labs Backpack";
+        String product2 = "Sauce Labs Bike Light";
+        productListPage.addProductToCart(product1);
+        productListPage.addProductToCart(product2);
+        openCart(driver);
+        assertTrue(cartPage.isItemInCart(product1) && cartPage.isItemInCart(product2));
+        assertEquals(2,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.removeItemFromCart(product1);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.clickContinueShopping();
+        openCart(driver);
+        cartPage.clickCheckout();
+    }
+
+    @Test
+    @DisplayName("User can edit Cart - problem_user")
+    public void userCanEditCartProblemUser(){
+        loginPage.logIn("problem_user", "secret_sauce");
+        String product1 = "Sauce Labs Backpack";
+        String product2 = "Sauce Labs Bike Light";
+        productListPage.addProductToCart(product1);
+        productListPage.addProductToCart(product2);
+        openCart(driver);
+        assertTrue(cartPage.isItemInCart(product1) && cartPage.isItemInCart(product2));
+        assertEquals(2,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.removeItemFromCart(product1);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        openCart(driver);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.clickContinueShopping();
+        openCart(driver);
+        cartPage.clickCheckout();
+    }
+
+    @Test
+    @DisplayName("User can edit Cart - performance_glitch_user")
+    public void userCanEditCartPerformanceGlitchUser(){
+        loginPage.logIn("performance_glitch_user", "secret_sauce");
+        String product1 = "Sauce Labs Backpack";
+        String product2 = "Sauce Labs Bike Light";
+        productListPage.addProductToCart(product1);
+        productListPage.addProductToCart(product2);
+        openCart(driver);
+        assertTrue(cartPage.isItemInCart(product1) && cartPage.isItemInCart(product2));
+        assertEquals(2,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.removeItemFromCart(product1);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        openCart(driver);
+        assertEquals(1,cartPage.getNumberOfItemsInCartList(),"Amount of products doesn't match with expected");
+        cartPage.clickContinueShopping();
+        openCart(driver);
+        cartPage.clickCheckout();
+    }
 
 }

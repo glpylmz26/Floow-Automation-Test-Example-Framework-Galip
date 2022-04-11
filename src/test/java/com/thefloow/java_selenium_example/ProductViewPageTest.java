@@ -10,15 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class ProductViewPageTest extends BaseTest implements HasCart {
-    @BeforeEach()
-    public void productsBeforeEach() {
-        loginPage.logIn("standard_user", "secret_sauce");
-    }
 
-    @Test
-    @DisplayName("User can add the product to cart from PDP")
     // PDP is Product Detail Page
-    public void userCanAddProductsToCartFromPDP() {
+    @Test
+    @DisplayName("User can add the product to cart from PDP - standard_user")
+    public void userCanAddProductsToCartFromPDPForStandardUser() {
+        loginPage.logIn("standard_user", "secret_sauce");
         String product = "Sauce Labs Backpack";
         productViewPage.clickOnTheProductForDetail(product);
         assertTrue(productViewPage.isProductDetailDisplayed(product));
@@ -28,21 +25,41 @@ public class ProductViewPageTest extends BaseTest implements HasCart {
         assertTrue(productViewPage.productHasRemoveButton(product));
         productViewPage.removeProductFromCart(product);
         assertTrue(productViewPage.productHasAddButton(product));
+        openCart(driver);
+        assertTrue(cartIsOpened(driver));
     }
 
     @Test
-    @DisplayName("User can go back PLP and can go to Cart from PDP")
-    // PDP is Product Detail Page
-    // PLP is Product List Page
-    public void userCanGoBackToListOrCanGoToCartFromPDP(){
+    @DisplayName("User can add the product to cart from PDP - problem_user")
+    public void userCanAddProductsToCartFromPDPForProblemUser(){
+        loginPage.logIn("problem_user", "secret_sauce");
         String product = "Sauce Labs Backpack";
         productViewPage.clickOnTheProductForDetail(product);
-        assertTrue(productViewPage.isProductDetailDisplayed(product));
-        productViewPage.clickOnTheBackToProductsButton();
-        assertTrue(productListPage.hasLoaded());
-        productViewPage.clickOnTheProductForDetail(product);
+        assertTrue(productViewPage.isProductDetailDisplayed(product),"Added product is NOT Displayed");
+        assertTrue(productViewPage.productHasAddButton(product));
+        productViewPage.addProductToCart(product);
+        assertTrue(getNumberOfItemsInCart(driver) > 0);
+        assertTrue(productViewPage.productHasRemoveButton(product));
+        productViewPage.removeProductFromCart(product);
+        assertTrue(productViewPage.productHasAddButton(product));
         openCart(driver);
-        assertCartIsOpened(driver);
-
+        assertTrue(cartIsOpened(driver));
     }
+
+    @Test
+    @DisplayName("User can add the product to cart from PDP - problem_user")
+    public void userCanAddProductsToCartFromPDPForProblemUser2(){
+        loginPage.logIn("problem_user", "secret_sauce");
+        String product = "Sauce Labs Backpack";
+        productViewPage.clickOnTheProductForDetail(product);
+        assertTrue(productViewPage.productHasAddButton(product));
+        productViewPage.addProductToCart(product);
+        assertTrue(getNumberOfItemsInCart(driver) > 0);
+        assertTrue(productViewPage.productHasRemoveButton(product));
+        productViewPage.removeProductFromCart(product);
+        assertTrue(productViewPage.productHasAddButton(product));
+        openCart(driver);
+        assertTrue(cartIsOpened(driver));
+    }
+
 }
